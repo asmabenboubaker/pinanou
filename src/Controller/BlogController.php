@@ -2,14 +2,19 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+use App\Form\SearchForm;
+ 
 
 /**
  * @Route("/blog")
@@ -25,6 +30,27 @@ class BlogController extends AbstractController
             'blogs' => $blogRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/fil", name="blog")
+     */
+    public function indexf(BlogRepository $blogRepository,Request $request, PaginatorInterface $paginator): Response
+    {
+        $data=new SearchData();
+        $form=$this->createForm(SearchForm::class,$data);
+        $form->handleRequest($request);
+        $tableusers=$blogRepository->findSearch($data);
+        dd($tableusers);
+        $marques = $paginator->paginate(
+            $tableusers, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            4 // Nombre de résultats par page
+        );
+        return $this->render('blog/filblog.html.twig', [
+            'marques'=>$tableusers,
+             'form'=> $form->createView()
+        ]);
+    }
+    
 
     /**
      * @Route("/new", name="app_blog_new", methods={"GET", "POST"})
@@ -69,6 +95,7 @@ class BlogController extends AbstractController
             'blog' => $blog,
         ]);
     }
+    
 
     /**
      * @Route("/{id}/edit", name="app_blog_edit", methods={"GET", "POST"})
@@ -80,7 +107,7 @@ class BlogController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blogRepository->add($blog);
-            return $this->redirectToRoute('app_blog_index', [], Response::HTTP_SEE_OTHER);
+            return $this->render('app_blog_index');
         }
 
         return $this->render('blog/edit.html.twig', [
@@ -89,14 +116,14 @@ class BlogController extends AbstractController
         ]);
     }
 
+     
     /**
-     * @Route("/{id}", name="app_blog_delete", methods={"POST"})
+     * @Route("supp/{id}",name="delete")
      */
-    public function delete(Request $request, Blog $blog, BlogRepository $blogRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$blog->getId(), $request->request->get('_token'))) {
-            $blogRepository->remove($blog);
-        }
+    public function supprimerblog($id,EntityManagerInterface $em ,BlogRepository $repository){
+        $marque=$repository->find($id);
+        $em->remove($marque);
+        $em->flush();
 
         return $this->redirectToRoute('app_blog_index', [], Response::HTTP_SEE_OTHER);
     }

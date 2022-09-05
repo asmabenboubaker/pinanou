@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Blog;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -75,4 +76,33 @@ class BlogRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return Blog[]
+     */
+    public function findSearch(SearchData $search):array
+    {
+        $query=$this
+        ->createQueryBuilder('b')
+        ->select('c','b')
+        
+        ->join('b.categorie','c');
+ 
+ 
+        if(!empty($search->q)){
+         $query=$query
+         ->andWhere('b.nom LIKE :q')
+         ->setParameter('q',"%{$search->q}%");
+        }
+ 
+        if(!empty($search->categories)){
+         $query=$query
+         ->andWhere('c.id IN (:categories)')
+         ->setParameter('categories',$search->categories);
+        }
+ 
+  
+           return $query->getQuery()->getResult();
+    }
+  
 }
