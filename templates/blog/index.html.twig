@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+ 
+<div class="main-content app-content mt-0">
+                <div class="side-app">
+                 <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Blog </h1>
+                            </div>
+
+
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Id</th>
+                                                                            <th>Nom</th>
+                                                                            <th>Descri</th>
+                                                                            <th>Date</th>
+                                                                            <th>Image</th>
+                                                                            <th>actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {% for blog in blogs %}
+                                                                        <tr>
+                                                                            <td>{{ blog.id }}</td>
+                                                                            <td>{{ blog.nom }}</td>
+                                                                            <td>{{ blog.descri }}</td>
+                                                                            <td>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</td>
+                                                                            <td><img src="{{ asset('/back/images/')}}{{ blog.image }}" width="100"  /></td>
+                                                                            
+                                                                            <td> <a href="{{ path('app_blog_edit', {'id': blog.id}) }}" class="btn text-primary btn-sm"
+                                                                                            data-bs-toggle="tooltip"
+                                                                                            data-bs-original-title="Edit"><span
+                                                                                                class="fe fe-edit fs-14"></span></a>
+                                                                                        <a href="{{ path('app_blog_delete',{'id': blog.id}) }}" class="btn text-danger btn-sm"
+                                                                                            data-bs-toggle="tooltip"
+                                                                                            data-bs-original-title="Delete"><span
+                                                                                                class="fe fe-trash-2 fs-14"></span></a></td>
+                    
+                                                                        </tr>
+                                                                    {% else %}
+                                                                        <tr>
+                                                                            <td colspan="6">no records found</td>
+                                                                        </tr>
+                                                                    {% endfor %}
+                                                                    </tbody>
+                                                                </table>
+ <a href="{{ path('app_blog_new') }}">Create new</a>
+                                                    </div>
+                                                       </div>
+                                                          </div>
+
+
+   
+{% endblock %}
