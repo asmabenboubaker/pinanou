@@ -1,0 +1,43 @@
+{% extends 'base-front.html.twig' %}
+
+
+{% block body %}
+<div class="main-content app-content mt-0">
+                <div class="side-app">
+    <h1>Edit Blog</h1>
+ {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.nom	, ' login')  }}
+        {{ form_widget(form.nom	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+    <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.descri	, ' login')  }}
+        {{ form_widget(form.descri  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+ <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.date	, ' login')  }}
+        {{ form_widget(form.date	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+ <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.image	, ' login')  }}
+        {{ form_widget(form.image	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+     <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.categorie	, ' login')  }}
+        {{ form_widget(form.categorie	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+
+    {{ form_end(form) }}
+    <a href="{{ path('app_blog_index') }}">back to list</a>
+
+  
+
+</div>
+</div>
+{% endblock %}

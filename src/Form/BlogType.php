@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+
 class BlogType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -18,9 +19,14 @@ class BlogType extends AbstractType
             ->add('descri')
             ->add('date')
            
-            ->add('image',FileType::class, array('data_class' => null))
+            ->add('image',FileType::class,[
+                'mapped' => false,
+                'data_class' => null,
+                'required' => false
+            ])
           
             ->add('categorie')
+            ->add("submit",SubmitType::class)
              
         ;
     }

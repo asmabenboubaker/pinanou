@@ -1,0 +1,50 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}New Blog{% endblock %}
+
+{% block body %}
+   <div class="main-content app-content mt-0">
+                <div class="side-app">
+                 <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Ajouter Blog </h1>
+                            </div>
+
+                             <div class="form-group">
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.nom	, ' login')  }}
+        {{ form_widget(form.nom	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+     <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.descri	, ' login')  }}
+        {{ form_widget(form.descri  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+ <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.date	, ' login')  }}
+        {{ form_widget(form.date	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+ <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.image	, ' login')  }}
+        {{ form_widget(form.image	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+     <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.categorie	, ' login')  }}
+        {{ form_widget(form.categorie	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' login'}} ) }}
+
+    </div>
+                        
+
+                          {{ form_end(form) }}
+
+                          </div>
+                         </div>
+                          </div>
+{% endblock %}
