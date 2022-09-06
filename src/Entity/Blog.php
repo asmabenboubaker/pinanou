@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BlogRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BlogRepository::class)
@@ -19,16 +20,22 @@ class Blog
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="nom is required")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 6,
+     *      minMessage = "description must be at least {{ limit }} characters long",
+     *
      */
     private $descri;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotBlank(message="date is required")
      */
     private $date;
 
@@ -39,6 +46,7 @@ class Blog
 
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="blogs")
+     * @Assert\NotBlank(message="nom is required")
      */
     private $categorie;
 

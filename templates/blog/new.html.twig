@@ -12,8 +12,37 @@
                             <h1 class="page-title">Ajouter Blog </h1>
                             </div>
 
-                            {{ include('blog/_form.html.twig') }}
+                                         <div class="form-group">
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
 
+    <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.nom	, ' Nom')  }}
+        {{ form_widget(form.nom	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' Nom'}} ) }}
+{{ form_errors(form.categorie) }}
+    </div>
+     <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.descri	, ' description')  }}
+        {{ form_widget(form.descri  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' description'}} ) }}
+{{ form_errors(form.categorie) }}
+    </div>
+ <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.date	, ' Date')  }}
+        {{ form_widget(form.date	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' date'}} ) }}
+{{ form_errors(form.categorie) }}
+    </div>
+ <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.image	, ' Image')  }}
+        {{ form_widget(form.image	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' image'}} ) }}
+{{ form_errors(form.categorie) }}
+    </div>
+     <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.categorie	, ' categorie')  }}
+        {{ form_widget(form.categorie	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' categorie'}} ) }}
+{{ form_errors(form.categorie) }}
+    </div>
+                        
+
+                          {{ form_end(form) }}
                             <a href="{{ path('app_blog_index') }}">back to list</a>
 
                         </div>

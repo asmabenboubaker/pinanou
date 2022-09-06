@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+    
+    
+    
+<div class="main-content app-content mt-0">
+                <div class="side-app">
+                 <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Categories </h1>
+                            </div>
+                                                                <table class="table">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>Id</th>
+                                                                            <td>{{ categorie.id }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>Nom</th>
+                                                                            <td>{{ categorie.nom }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <a href="{{ path('app_categorie_index') }}">back to list</a></br>
+
+                                                                <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
+                                                            
+                                                            </div>
+                                                            </div>
+                                                            </div>
+
+    
+{% endblock %}

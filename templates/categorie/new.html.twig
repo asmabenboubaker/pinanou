@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Categorie{% endblock %}
+
+{% block body %}
+<div class="main-content app-content mt-0">
+                <div class="side-app">
+                 <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Ajouter categorie</h1>
+                            </div>
+ 
+ {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    <div class="form-group" data-sb-validations="required">
+        {{ form_label(form.nom	, ' Nom')  }}
+        {{ form_widget(form.nom	  ,{'attr': {'class': 'form-control form-control-user' , 'placeholder' : ' Nom'}} ) }}
+
+    </div>
+     {{ form_end(form) }}
+
+                                                        <a href="{{ path('app_categorie_index') }}">back to list</a>
+                                                </div>
+                                                                                                </div>
+
+                                                </div>
+
+{% endblock %}
