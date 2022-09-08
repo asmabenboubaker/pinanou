@@ -52,6 +52,8 @@ class Blog
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="blogs")
      * @Assert\NotBlank(message="nom is required")
+     *  @Groups("blog")
+     *  
      */
     private $categorie;
 

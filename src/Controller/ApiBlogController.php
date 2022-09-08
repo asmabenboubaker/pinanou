@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Blog;
+use App\Entity\Categorie;
 use App\Repository\BlogRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -15,8 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiBlogController extends AbstractController
 {
 
-/**
-     * @Route("/api/blog/", name="api_blog" , methods={"GET"})
+    /**
+     * @Route("/api/blog/", name="api_blogkk" , methods={"GET"})
      */
 
     public function index(BlogRepository $repo)
@@ -36,6 +37,7 @@ class ApiBlogController extends AbstractController
         $em->flush();
         return new JsonResponse(['msg' => 'event supprimer'],200);
     }
+    
     /**
  * @Route("/api/blog/ajouter/", name="api_blog_add",methods={"GET"})
  */
@@ -45,11 +47,9 @@ public function add(Request $request)
     $data = new Blog();
     
     $data->setNom((String)$request->query->get('nom'));
-   // $data->setDate((String)$request->query->get('date'));
+  
     $data->setImage((String)$request->query->get('image'));
-    $data->setDescri((String)$request->query->get('descri'));
-
-
+    $data->setDescri((String)$request->query->get('descri')); 
     $em = $this->getDoctrine()->getManager();
     $em->persist($data);
     $em->flush();
