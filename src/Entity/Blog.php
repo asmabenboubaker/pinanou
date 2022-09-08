@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BlogRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=BlogRepository::class)
@@ -15,12 +16,14 @@ class Blog
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *  @Groups("blog")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="nom is required")
+     *  @Groups("blog")
      */
     private $nom;
 
@@ -28,19 +31,21 @@ class Blog
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *      min = 6,
-     *      minMessage = "description must be at least {{ limit }} characters long",
-     *
+     *      minMessage = "description must be at least {{ limit }} characters long",)
+     * @Groups("blog")
      */
     private $descri;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="date is required")
+     *  @Groups("blog")
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *  @Groups("blog")
      */
     private $image;
 

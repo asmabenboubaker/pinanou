@@ -24,6 +24,7 @@
                                                                             <th>Nom</th>
                                                                             <th>Descri</th>
                                                                             <th>Date</th>
+                                                                            <th>categorie</th>
                                                                             <th>Image</th>
                                                                             <th>actions</th>
                                                                         </tr>
@@ -34,7 +35,9 @@
                                                                             <td>{{ blog.id }}</td>
                                                                             <td>{{ blog.nom }}</td>
                                                                             <td>{{ blog.descri }}</td>
+                                                                            
                                                                             <td>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</td>
+                                                                            <td>{{ blog.categorie}}</td>
                                                                             <td><img src="{{ asset('/back/images/')}}{{ blog.image }}" width="100"  /></td>
                                                                             
                                                                             <td> <a href="{{ path('app_blog_edit', {'id': blog.id}) }}" class="btn text-primary btn-sm"
