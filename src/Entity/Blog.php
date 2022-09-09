@@ -39,7 +39,7 @@ class Blog
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="date is required")
-     *  @Groups("blog")
+     *  
      */
     private $date;
 
@@ -50,22 +50,31 @@ class Blog
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="blogs")
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="blogs",cascade={"persist"})
      * @Assert\NotBlank(message="nom is required")
      *  @Groups("blog")
      *  
      */
     private $categorie;
+     /**
+     * @ORM\Column(type="integer", nullable=true)
+     *  @Groups("blog")
+     */
+    private $idcat;
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    public function getIdcat(): ?int
+    {
+        return $this->idcat;
+    }
     public function getNom(): ?string
     {
         return $this->nom;
     }
+    
 
     public function setNom(?string $nom): self
     {
@@ -74,6 +83,12 @@ class Blog
         return $this;
     }
 
+    public function setIdcat(?int $idcat): self
+    {
+        $this->idcat = $idcat;
+
+        return $this;
+    }
     public function getDescri(): ?string
     {
         return $this->descri;

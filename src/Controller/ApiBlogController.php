@@ -35,7 +35,7 @@ class ApiBlogController extends AbstractController
 
         $em->remove($id);
         $em->flush();
-        return new JsonResponse(['msg' => 'event supprimer'],200);
+        return new JsonResponse(['msg' => 'blog supprimer'],200);
     }
     
     /**
@@ -50,10 +50,11 @@ public function add(Request $request)
   
     $data->setImage((String)$request->query->get('image'));
     $data->setDescri((String)$request->query->get('descri')); 
+    $data->setIdcat((String)$request->query->get('idcat')); 
     $em = $this->getDoctrine()->getManager();
     $em->persist($data);
     $em->flush();
-    return new JsonResponse(['msg' => 'event ajouté'],200);
+    return new JsonResponse(['msg' => 'bllog ajouté'],200);
 }
 
 /**
@@ -73,6 +74,6 @@ public function add(Request $request)
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        return new JsonResponse(['msg' => 'event moddifié'],200);
+        return new JsonResponse(['msg' => 'blog moddifié'],200);
     }
 }
